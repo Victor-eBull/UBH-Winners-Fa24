@@ -7,26 +7,24 @@ const PORT = 3002; // why?
 app.use(cors());
 app.use(express.json());
 
-// handles requests from server 2 (challenge 1)
-app.post('/api/challenge1-completed', (req, res) => {
-    // get user id
-    const {user_id} = req.body;
 
-    // handle progres slogic here
+const challenges = [
+  "challenge1",
+  "challenge2"
+]
 
-    // make response
-    res.json({message: 'user ${user_id} progress for challenge 1 updated'});
-});
+app.post("/api/:challenge", (req, res)=>{
+  // Change this to cookies if we have a login
+  const {user_id} = req.body;
+  const challenge = req.params["challenge"];
 
-// handles requests from server 3 (challenge 2)
-app.post('/api/challenge2-completed', (req, res) => {
-    // get user id
-    const {user_id} = req.body;
+  if(!challenges.includes(challenge)){
+    res.status(401).send("Bad challenge name [URL]");
+  }
 
-    // handle progres slogic here
-
-    // make response
-    res.json({message: 'user ${user_id} progress for challenge 2 updated'});
+  res.json({
+    message: `user ${user_id} progress for challenge "${challenge}" updated`
+  });
 });
 
 app.get('/api/progress', (req, res) => {
@@ -34,8 +32,11 @@ app.get('/api/progress', (req, res) => {
     res.setHeader('Cache-Control', 'no-cache');
     res.setHeader('Connection', 'keep-alive');
   
-    // Send initial data
-    res.write('data: ' + JSON.stringify({ challenge1: 45, challenge2: 60 }) + '\n\n');
+    // EXAMPLE CODE:
+
+    res.write(`data: ${
+      JSON.stringify({ challenge1: 45, challenge2: 60 })
+    }\n\n`)
   
     // Simulate sending progress updates every 5 seconds
     const intervalId = setInterval(() => {
