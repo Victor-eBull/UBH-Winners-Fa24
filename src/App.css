@@ -1,42 +1,78 @@
+@import url('https://fonts.cdnfonts.com/css/kapakana');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 #root {
   max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.landing{
+  background-image: url('../../public/landing_backdrop.jpg');
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 5rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.landing .error{
+  color: red;
+  font-size: 1.25rem;
+  margin-bottom: .5rem;
+  margin-top: -1rem;
 }
 
-.card {
-  padding: 2em;
+.landing_name{
+  font-family: 'Kapakana', sans-serif;
+  font-size: 5rem;
+  color: black;
 }
 
-.read-the-docs {
-  color: #888;
+.landing_inputs{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.landing_inputs input, .landing_inputs button{
+  width: 15rem;
+  height: 3rem;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  text-align: center;
+  font-size: 1.25rem;
+}
+
+.landing_inputs input{
+  margin-bottom: .5rem;
+  border: 1px solid black;
+}
+
+.landing_inputs input:hover, .landing_inputs input:focus{
+  border: 2px solid black;
+}
+
+.landing_inputs input:focus::placeholder {
+  color: transparent;
+}
+
+
+.landing_inputs button{
+  background-color: #B5432F;
+  cursor: pointer;
+  color: white
+}
+
+.landing_inputs button:hover{
+  background-color: #D95D39;
 }
