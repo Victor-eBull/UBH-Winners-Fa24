@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  router:
+    build:
+      context: .
+      dockerfile: ./router/Dockerfile
+    container_name: router
+    volumes:
+      - ./shared_data:/shared_data
+    network_mode: host
+
+  webserv:
+    build:
+      context: .
+      dockerfile: ./webserver/Dockerfile
+    container_name: WebServer
+    mac_address: "AA:BB:CC:DD:EE:05"
+    networks:
+      UBHNet:
+        ipv4_address: 10.42.0.5
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./shared_data:/shared_data
+
+  room1:
+    build:
+      context: .
+      dockerfile: ./room1/Dockerfile
+    container_name: HostB
+    mac_address: "AA:BB:CC:DD:EE:06"
+    networks:
+      UBHNet:
+        ipv4_address: 10.42.0.6
+    volumes:
+      - ./shared_data:/shared_data
+    
+networks:
+  UBHNet:
+    name: ubh-net
+    ipam:
+      config:
+        - subnet: 10.42.0.0/24
