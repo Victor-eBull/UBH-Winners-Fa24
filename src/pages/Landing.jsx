@@ -1,18 +1,32 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { useNavigate } from 'react-router-dom';
 
-function Landing({startGame, changeNickname}) {
+function Landing({startGame, changeNickname, loggedIn=false}) {
     const navigate = useNavigate()
-    const gameName = 'The White Rabbit\'s Escape'
+    const gameName = 'Escape From Wonderland'
     const [showError, setShowError] = useState(false)
     const [nickname, setNickname] = useState('')
 
-    const handleEnter = (e) => {
+    useEffect(() => {
+        if (loggedIn) {
+            navigate('/game')
+        }
+    }, [])
+
+    const handleNicknameChange = (e) => {
+        const input = e.target.value
+        const cleanedInput = input.replace(/[^a-zA-Z0-9]/g, '')
+        setNickname(cleanedInput)
+    }
+
+    const handleEnter = () => {
+        setNickname(nickname.trim())
         if (nickname.length > 0) {
             setShowError(false)
             changeNickname(nickname)
             startGame(true)
-            navigate('/roadmap')
+            localStorage.setItem('username', nickname);
+            navigate('/game')
         }else{
             setShowError(true)
         }
@@ -25,7 +39,12 @@ function Landing({startGame, changeNickname}) {
             <h1 className={"landing_name"}>{gameName}</h1>
             {error}
             <div className={"landing_inputs"}>
-                <input onChange={(e) => setNickname(e.target.value)} type={"text"} placeholder={"Nickname"} />
+                <input type={"text"}
+                    value={nickname}
+                    onChange={handleNicknameChange}
+                    placeholder={"Nickname"}
+                    maxLength={12}
+                />
                 <button onClick={handleEnter}>{'Enter'}</button>
             </div>
         </div>

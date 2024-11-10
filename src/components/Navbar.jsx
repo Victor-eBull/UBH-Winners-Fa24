@@ -1,10 +1,10 @@
-function Navbar() {
+function Navbar({username = null, showLeaderboard, showProgress = null}) {
     return (
         <nav>
-            <ul>
-                <li>Home</li>
-                <li>About</li>
-                <li>Contact</li>
+            <ul className={"navbar"}>
+                {username && <li onClick={showProgress}>{"My Progress"}</li>}
+                <li onClick={showLeaderboard}>{"Leaderboard"}</li>
+                {username && <li id={"hi"}>Hi, {username}</li>}
             </ul>
         </nav>
     )
