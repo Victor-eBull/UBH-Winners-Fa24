@@ -5,6 +5,8 @@ import Landing from './pages/Landing';
 import Roadmap from './pages/Roadmap';
 import './App.css';
 
+const apiurl = '';
+
 function App() {
   const [nickname, setNickname] = useState('')
   const [gameStarted, setGameStarted] = useState(false);
