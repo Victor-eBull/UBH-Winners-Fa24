@@ -43,6 +43,13 @@ services:
     networks:
       UBHNet:
         ipv4_address: 10.42.0.15
+    ports:
+      - "3306:3306" # expose dfaul port
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: mydatabase
+    volumes:
+      - ./my.cnf:/etc/mysql/my.cnf
     
 networks:
   UBHNet:
