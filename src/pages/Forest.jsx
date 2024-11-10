@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 
 function Forest(){
+
     useEffect(() => {
         if (!document.querySelector("script[src='/maze.js']")) {
             const script = document.createElement("script");
@@ -17,10 +18,9 @@ function Forest(){
 
 
     return (
-                // body { display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-                // canvas { border: 1px solid black; background-color: #333; }
         <div>
             <link href="/forest.css" rel="stylesheet"></link>
+            <img src="/Jabberwocky.webp" alt="Jumpscare Image" id="jumpscareImage" />
             <canvas id="maze" width="3000" height="1800"></canvas>
             <script src="maze.js"></script>
         </div>

@@ -35,10 +35,10 @@ const map = [
     ["1","0","0","0","0","0","0","0","0","0","0","0","0","1","0","0","0","0","0","0","0","1","0","1","0","0","0","0","0","0","0","0","0","0","0","0","0","1","0","0","0","0","0","0","0","0","1","0","0","1"],
     ["1","1","1","1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","0","1","0","1","1","1","1","1","1","1","1","1","0","1","1","1","0","1","1","1","1","1","1","1","0","1","1","1","0","1"],
     ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1","0","1","0","0","0","0","0","0","0","0","0","0","0","1","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
-    ["1","0","1","1","1","1","0","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","0","1","0","1","1","1","1","1","1","1","1","1","0","1","0","1","1","1","1","1","1","1","1","1","1","0","0","1"],
+    ["1","0","1","1","1","1","0","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","0","1","0","1","1","1","1","1","1","1","1","1","0","1","0","1","1","1","1","1","1","1","1","1","1","1","0","1"],
     ["1","0","0","0","0","1","0","0","0","0","1","0","0","0","0","0","0","0","0","0","0","1","0","1","0","0","0","0","0","0","0","0","0","0","0","1","0","0","0","0","1","0","0","0","0","0","1","0","0","1"],
-    ["1","0","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","0","0","1"],
-    ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1","0","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
+    ["1","0","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","0","1","1"],
+    ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1","0","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","0","1"],
     ["1","0","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
     ["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"]
 ];
@@ -58,20 +58,33 @@ let door = {
     y: 7
 }
 
+let jumpscare = {
+    x: 15,
+    y: 7
+}
+// let jumpscare = {
+//     x: 48,
+//     y: 7
+// }
+// let jumpscare = {
+//     x: 1,
+//     y: 1
+// }
+
 function coordsOf(grid,character){
     return map.map((row,i)=>[i,row.indexOf(character)]).find(value=>value[1]!=-1);
 }
-const TILE_SIZE = 160;
+const TILE_SIZE = 200;
 const canvas = document.getElementById('maze');
 canvas.width = 3000;
-canvas.height = 1600;
+canvas.height = 1700;
 
 
-const visualHeight = 400;
-canvas.style.aspectRatio = "10 / 6";
+// canvas.style.aspectRatio = "10 / 6";
+canvas.style.width = "100%";
 canvas.style.height = `100%`;
 const ctx = canvas.getContext('2d');
-ctx.imageSmoothingEnabled = false;
+ctx.imageSmoothingEnabled = true;
 
 const FOV = Math.PI / 3; // Field of view, in radians
 const NUM_RAYS = 1500;
@@ -79,7 +92,7 @@ const STEP_ANGLE = FOV / NUM_RAYS;
 const MOVE_SPEED = 25;
 const ROTATE_SPEED = 0.06;
 
-const offsetFactor = 0.13;
+const offsetFactor = 0.06;
 
 function raw2grid(x,y){
     output = [Math.floor(x / TILE_SIZE), Math.floor(y / TILE_SIZE)]
@@ -188,7 +201,7 @@ function drawScene() {
 
         // Render pseudo-3D wall slice
         const correctedDist = distance * Math.cos(rayAngle - player.angle);
-        const wallHeight = (TILE_SIZE * canvas.width/3.5) / correctedDist;
+        const wallHeight = (TILE_SIZE * canvas.width/4) / correctedDist * 1.5;
         // drawRect(
         //     (i * (canvas.width / NUM_RAYS)),
         //     (canvas.height / 2) - (wallHeight / 2),
@@ -196,8 +209,8 @@ function drawScene() {
         //     wallHeight,
         //     color
         // );
-        const MAX_DIST = TILE_SIZE * Math.max(map[0].length, map.length) / 3;
-        const alpha = Math.max(0, Math.min(1, 1 - (correctedDist / MAX_DIST)));
+        const MAX_DIST = TILE_SIZE * Math.max(map[0].length, map.length) / 3.6;
+        const alpha = Math.max(0, Math.min(.7, 1 - (correctedDist / MAX_DIST)));
         // ctx.noStroke();
         drawRect(
             i * sliceWidth,
@@ -223,20 +236,20 @@ function movePlayer() {
     let newY = player.y;
 
     // Handle forward movement (up arrow)
-    if (keys['ArrowUp']) {
+    if (keys['ArrowUp'] || keys['w']) {
         newX = player.x + cosAngle * MOVE_SPEED;
         newY = player.y + sinAngle * MOVE_SPEED;
     }
 
     // Handle backward movement (down arrow)
-    if (keys['ArrowDown']) {
+    if (keys['ArrowDown'] || keys['s']) {
         newX = player.x - cosAngle * MOVE_SPEED;
         newY = player.y - sinAngle * MOVE_SPEED;
     }
 
     // Handle rotation (left and right arrows)
-    if (keys['ArrowLeft']) player.angle -= ROTATE_SPEED;
-    if (keys['ArrowRight']) player.angle += ROTATE_SPEED;
+    if (keys['ArrowLeft'] || keys['a']) player.angle -= ROTATE_SPEED;
+    if (keys['ArrowRight'] || keys['d']) player.angle += ROTATE_SPEED;
 
     // Check for collision at the new position and update accordingly
     if (!checkCollision(newX, newY)) {
@@ -257,7 +270,10 @@ const keys = {};
 document.addEventListener('keydown', (e) => keys[e.key] = true);
 document.addEventListener('keyup', (e) => keys[e.key] = false);
 
-let isDoorOpened = false;
+const jabberAudio = new Audio("/scream.mp3");
+jabberAudio.loop = false;
+
+let isDoorOpened = false, hasJumpscared = false;
 function gameLoop() {
     movePlayer();
 
@@ -275,8 +291,44 @@ function gameLoop() {
         }
     }
 
+    if (!hasJumpscared && gridX == jumpscare.x && gridY == jumpscare.y) {
+        triggerJumpscare();
+    }
+
     drawScene();
     requestAnimationFrame(gameLoop);
 }
+function triggerJumpscare() {
+    const jabberImage = document.getElementById("jumpscareImage");
+    
+    hasJumpscared = true;
+    jabberAudio.play().then(() => {
+        setTimeout(function(){
+            jabberImage.setAttribute("data-show", "true");
+        }, 100);
+    });
+
+    // Remove the jumpscare effect after animation (optional)
+    setTimeout(() => {
+        jabberImage.removeAttribute("data-show");
+        jabberAudio.pause();
+    }, 2000);
+}
+
 // Start the game loop
 gameLoop();
+let hasRunOnce = false;
+function runOnce(){
+    if(hasRunOnce){
+        return;
+    }
+    hasRunOnce = true;
+
+    const filepath = "/background-music.mp3";
+
+    const background_music = new Audio(filepath);
+    background_music.loop = true;
+    background_music.play().then;
+}
+window.addEventListener("keydown", runOnce);
+window.addEventListener("click", runOnce);
