@@ -50,12 +50,12 @@ function handleQuery(query, params) {
 // sign up (store new user info in db)
 app.post('/api/sign-up', async (req, res) => {
     console.log(hello);
-    const {username, new_token} = req.body;
+    const {username, token} = req.body;
     const query = "INSERT INTO user_sessions (username, token, room1, room2, notes, start_timestamp, latest_timestamp) VALUES (?, ?, TRUE, FALSE, '', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)";
 
     try {
-        await handleQuery(query, [username, new_token]);
-        res.status(200).json({token: new_token});
+        await handleQuery(query, [username, token]);
+        res.status(200).json({token: token});
     } catch (error) {
         console.log('DB error during sign-up:', error);
         res.status(500).json({error: error.message});

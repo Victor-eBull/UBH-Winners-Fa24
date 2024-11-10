@@ -16,11 +16,11 @@ const db_server = 'http://database:3003'; // container_name:port
 
 // basic game state structure
 const gamestate = {
-  id,
-  username,
-  token,
-  room_number,
-  notes
+  id: 1,
+  username:'',
+  token: '',
+  room_number: 1,
+  notes: ''
 };
 
 // helper func to generate a token
@@ -30,14 +30,16 @@ function generate_token() {
 
 // takes token, returns token to app.jsx, sends token and username to db server
 async function sign_up(username) {
-  const new_token = generate_token();
+  const token = generate_token();
   //console.log(new_token);
   try {
-    const response =  await axios.post(`${db_server}/api/sign-up`, {username, new_token});
+    const response =  await axios.post(`${db_server}/api/sign-up`, {username, token});
     console.log(response);
     return response.data.token;
   } catch (error) {
+    console.log(response);
     console.log('Error signing user up:', username);
+    console.log(error.message);
     throw new Error('sign-up failed: ' + error);
   }
 }
@@ -45,7 +47,7 @@ async function sign_up(username) {
 // takes token and returns gamestate to app.jsx
 async function log_in(token) {
   let state = {
-    id: null,
+    id: 1,
     username: '',
     token: '',
     room_number: 0,
