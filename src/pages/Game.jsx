@@ -6,12 +6,24 @@ import '../styles/Game.css'
 
 function Game() {
     const navigate = useNavigate()
+    const [input, setInput] = useState('')
+
+    const handleSubmit = () => {}
 
     return (
         <>
         <div className={"game"}>
             <div>
                 <RoomOne/>
+            </div>
+            <div className='submit'>
+                <input value={input}
+                    type='text'
+                    onChange={(e) => setInput(e.target.value)}
+                    placeholder='Enter your anwser here'
+                ></input>
+                <button onClick={handleSubmit}
+                >Submit</button>
             </div>
         </div>
         </>

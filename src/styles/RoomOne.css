@@ -28,11 +28,6 @@
     animation: shimmer 2s infinite;
 }
 
-.room {
-    position: relative;
-    text-align: center;
-}
-
 .image-container {
     position: relative;
     display: inline-block;
@@ -54,4 +49,5 @@
     margin: 0;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 1rem;
 }

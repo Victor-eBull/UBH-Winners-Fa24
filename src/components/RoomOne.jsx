@@ -6,7 +6,7 @@ function RoomOne() {
         { id: 1, top: '75px', left: '100px', dialogue: "Bits of nonsense, scattered just out of sight.", clicked: false, showDialogue: false },
         { id: 2, top: '150px', left: '200px', dialogue: "Why can't you just tell me the 4 numbers?", clicked: false, showDialogue: false },
         { id: 3, top: '300px', left: '250px', dialogue: "A closer look, and you'll see it all add up.", clicked: false, showDialogue: false },
-        { id: 4, top: '125px', left: '4 50px', dialogue: "Oh, there are lines unseen, but they’re not so hard to find.", clicked: false, showDialogue: false },
+        { id: 4, top: '125px', left: '450px', dialogue: "Oh, there are lines unseen, but they’re not so hard to find.", clicked: false, showDialogue: false },
     ]);
 
     const handleDotClick = (id) => {
