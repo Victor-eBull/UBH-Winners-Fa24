@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 function Landing({startGame, changeNickname}) {
     const navigate = useNavigate()
-    const gameName = 'The White Rabbit\'s Escape'
+    const gameName = 'Escape From Wonderland'
     const [showError, setShowError] = useState(false)
     const [nickname, setNickname] = useState('')
 
