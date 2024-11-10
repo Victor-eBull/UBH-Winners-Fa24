@@ -1,6 +1,8 @@
 import express from 'express';
 import cors from 'cors'; // for cross-origin requests
 import axios from 'axios'; // for sending information to other db
+import mysql from 'mysql';
+import { createConnection } from 'mysql';
 
 const app = express();
 const PORT = 3002; // why?
@@ -9,7 +11,7 @@ app.use(cors());
 app.use(express.json());
 
 // db server url
-const db_server = '';
+const db_server = 'http://database:3303'; // container_name:port
 
 // basic game state structure
 const gamestate = {
