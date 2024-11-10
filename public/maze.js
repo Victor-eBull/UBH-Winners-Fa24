@@ -20,59 +20,165 @@
 // '10111111111111111111110000000000000000000000000001',
 // '11111111111111111111111111111111111111111111111111'
 // ];
-const map = [
-    ["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
-    ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
-    ["1","0","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","1","1","1","1","0","1","0","1","1","1","1","1","0","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","0","0","1"],
-    ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1","0","0","1"],
-    ["1","0","1","1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","0","1","0","1","0","1","1","1","0","1","1","1","1","0","1","1","1","1","1","1","1","1","1","1","1","0","1","0","0","1"],
-    ["1","0","0","0","0","0","0","0","0","0","0","1","0","1","0","0","0","0","0","0","0","1","0","1","0","0","0","0","0","0","0","0","1","0","1","0","0","0","0","0","0","0","0","0","0","0","1","0","0","1"],
-    ["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","1","0","1","0","1","1","1","1","1","1","1","1","1","1","1","0","1","0","0","1"],
-    ["0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1","0","0","1"],
-    ["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","0","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
-    ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1","0","1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
-    ["1","0","1","1","1","1","0","1","1","1","1","1","0","1","1","1","1","1","1","1","1","1","0","1","0","1","1","1","1","1","1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","0","0","1"],
-    ["1","0","0","0","0","0","0","0","0","0","0","0","0","1","0","0","0","0","0","0","0","1","0","1","0","0","0","0","0","0","0","0","0","0","0","0","0","1","0","0","0","0","0","0","0","0","1","0","0","1"],
-    ["1","1","1","1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","0","1","0","1","1","1","1","1","1","1","1","1","0","1","1","1","0","1","1","1","1","1","1","1","0","1","1","1","0","1"],
-    ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1","0","1","0","0","0","0","0","0","0","0","0","0","0","1","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
-    ["1","0","1","1","1","1","0","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","0","1","0","1","1","1","1","1","1","1","1","1","0","1","0","1","1","1","1","1","1","1","1","1","1","1","0","1"],
-    ["1","0","0","0","0","1","0","0","0","0","1","0","0","0","0","0","0","0","0","0","0","1","0","1","0","0","0","0","0","0","0","0","0","0","0","1","0","0","0","0","1","0","0","0","0","0","1","0","0","1"],
-    ["1","0","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","0","1","1"],
-    ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1","0","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","0","1"],
-    ["1","0","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
-    ["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"]
-];
 
-let checkpoint = {
-    x: 22,
-    y: 18
-}
-
-let uncheckpoint = {
-    x: 22,
-    y: 6
-}
-
-let door = {
-    x: 21,
-    y: 7
-}
-
-let jumpscare = {
-    x: 15,
-    y: 7
-}
-// let jumpscare = {
-//     x: 48,
-//     y: 7
-// }
-// let jumpscare = {
-//     x: 1,
-//     y: 1
-// }
+let maze_state = 0;
+// let mazes = [
+//     {
+//         gameOver: false,
+//         x: 10,
+//         y: 5,
+//         tp_x: 28,
+//         tp_y: 1,
+//         maze: [
+//             "111111111111111111111111111111",
+//             "100010000000000000100000000001",
+//             "100010010011100000100010011101",
+//             "100110010000100000001010000111",
+//             "100000000000111100001000000001",
+//             "111000011111100000111100011001",
+//             "101100011111100000111100011001",
+//             "100000000000000000000000000001",
+//             "111111111111111111111111111111"
+//         ].map(x=>x.split(""))
+//     },
+//     {
+//         gameOver: false,
+//         x: 1,
+//         y: 7,
+//         tp_x: 1,
+//         tp_y: 2,
+//         maze: [
+//             "11111111111111111111111111111111111111111111111",
+//             "10111111111111111111111111111111111111111111111",
+//             "10000000000000000000000000000000000000000000001",
+//             "11111111111111111111111111111111111111111111111",
+//         ].map(x=>x.split(""))
+//     },
+//     {
+//         gameOver: false,
+//         x: 3,
+//         y: 2,
+//         tp_x: 1,
+//         tp_y: 1,
+//         maze: [
+//             "11111111111111111111111111111111111111111111111111111111",
+//             "10000000000000000000000000000000000000000000000000000001",
+//             "11111111111111111111111111111111111111111111111111111111",
+//         ].map(x=>x.split(""))
+//     },
+//     {
+//         gameOver: false,
+//         x: 6,
+//         y: 1,
+//         tp_x: 49,
+//         tp_y: 5,
+//         maze: [
+//             "111111111111111111111111111111111111111111111111111111111111111111111111",
+//             "100000000000000000000000000000000000000000000000000000000000000000000001",
+//             "100000000000000000000000000000000000000000000000000000000000000000000001",
+//             "100000000000000000000000000000000000000000000000000000000000000000000001",
+//             "100000000000000000000000000000000000000000000001111111111111111111111111",
+//             "100000000000000000000000000000000000000000000000000000000000000000000001",
+//             "100000000000000000000000000000000000000000000001111111111111111111111111",
+//             "100000000000000000000000000000000000000000000000000000000000000000000001",
+//             "100000000000000000000000000000000000000000000000000000000000000000000001",
+//             "111111111111111111111111111111111111111111111111111111111111111111111111",
+//         ].map(x=>x.split(""))
+//     },
+//     {
+//         gameOver: false,
+//         x: 46,
+//         y: 5,
+//         tp_x: 46,
+//         tp_y: 5,
+//         maze: [
+//             "111111111111111111111111111111111111111111111111111111111111111111111111",
+//             "100000000000000000000000000000000000000000000000000000000000000000000001",
+//             "100000000000000000000000000000000000000000000000000000000000000000000001",
+//             "100000000000000000000000000000000000000000000000000000000000000000000001",
+//             "100000000000000000000000000000000000000000000000000000000000000000000001",
+//             "100000000000000000000000000000000000000000000000000000000000000000000001",
+//             "100000000000000000000000000000000000000000000000000000000000000000000001",
+//             "100000000000000000000000000000000000000000000000000000000000000000000001",
+//             "100000000000000000000000000000000000000000000000000000000000000000000001",
+//             "111111111111111111111111111111111111111111111111111111111111111111111111",
+//         ].map(x=>x.split(""))
+//     },
+//     {
+//         gameOver: false,
+//         x: 100000,
+//         y: 5,
+//         tp_x: 48,
+//         tp_y: 5,
+//         maze: [
+//             "111111111111111111111111111111111111111111111111111111111111111111111111",
+//             "100000000000000000000000000000000000000000000000000000000000000000000001",
+//             "100000000000000000000000000000000000000000000000000000000000000000000001",
+//             "100000000000000000000000000000000000000000000000000000000000000000000001",
+//             "100000000000000000000000000000000000000000000000000000000000000000000001",
+//             "100000000000000000000000000000000000000000000000000000000000000000000001",
+//             "100000000000000000000000000000000000000000000000000000000000000000000001",
+//             "100000000000000000000000000000000000000000000000000000000000000000000001",
+//             "100000000000000000000000000000000000000000000000000000000000000000000001",
+//             "111111111111111111111111111111111111111111111111111111111111111111111111",
+//         ].map(x=>x.split(""))
+//     },
+// ]
+let mazes = [
+    {
+        gameOver: false,
+        x: 13,
+        y: 1,
+        tp_x: 13,
+        tp_y: 1,
+        tp_rotateBy: 0,
+        next_maze_state: 1,
+        maze: [
+            "1111111111111111",
+            "1000000000000001",
+            "1111111111111101",
+            "1000000000000101",
+            "1000000000000101",
+            "1000000000000101",
+            "1000000000000101",
+            "1000000000000101",
+            "1000000000000101",
+            "1000000000000101",
+            "1000000000000101",
+            "1000000000000101",
+            "1000000000000101",
+            "1111111111111111"
+        ].map(x=>x.split(""))
+    },
+    {
+        gameOver: false,
+        x: 103,
+        y: 1,
+        tp_x: 1,
+        tp_y: 1,
+        tp_rotateBy: 0,
+        next_maze_state: 0,
+        maze: [
+            "1111111111111111",
+            "1000000000000001",
+            "1000000000001101",
+            "1000000000000101",
+            "1000000000000101",
+            "1000000000000101",
+            "1000000000000101",
+            "1000000000000101",
+            "1000000000000101",
+            "1000000000000101",
+            "1000000000000101",
+            "1000000000000101",
+            "1000000000000101",
+            "1111111111111111"
+        ].map(x=>x.split(""))
+    },
+]
 
 function coordsOf(grid,character){
-    return map.map((row,i)=>[i,row.indexOf(character)]).find(value=>value[1]!=-1);
+    return mazes[maze_state].maze.map((row,i)=>[i,row.indexOf(character)]).find(value=>value[1]!=-1);
 }
 const TILE_SIZE = 200;
 const canvas = document.getElementById('maze');
@@ -87,10 +193,11 @@ const ctx = canvas.getContext('2d');
 ctx.imageSmoothingEnabled = true;
 
 const FOV = Math.PI / 3; // Field of view, in radians
-const NUM_RAYS = 1500;
+const NUM_RAYS = 200;
 const STEP_ANGLE = FOV / NUM_RAYS;
-const MOVE_SPEED = 25;
-const ROTATE_SPEED = 0.06;
+const MOVE_SPEED = 40;
+// const ROTATE_SPEED = 0.06;
+const ROTATE_SPEED = 0.1;
 
 const offsetFactor = 0.06;
 
@@ -100,14 +207,17 @@ function raw2grid(x,y){
     return output;
 }
 
-const rows = map.length;
-const cols = map[0].length;
-
 // Player
 const player = {
     x: 1.5 * TILE_SIZE,
-    y: 3.5 * TILE_SIZE,
-    angle: 0
+    y: 1.5 * TILE_SIZE,
+    angle: 0,
+    get grid(){
+        return {
+            y: Math.floor(this.y / TILE_SIZE),
+            x: Math.floor(this.x / TILE_SIZE)
+        };
+    }
 };
 
 // Helper functions
@@ -129,7 +239,7 @@ function gameOver(){
 
 function checkCollision(x, y) {
     // Ensure the x and y coordinates are within bounds of the grid
-    if (x < 0 || x >= TILE_SIZE * map[0].length || y < 0 || y >= TILE_SIZE * map.length) {
+    if (x < 0 || x >= TILE_SIZE * mazes[maze_state].maze[0].length || y < 0 || y >= TILE_SIZE * mazes[maze_state].maze.length) {
         gameOver()
         return true; // Collision with the boundary of the maze
     }
@@ -139,7 +249,7 @@ function checkCollision(x, y) {
     const cellY = Math.floor(y / TILE_SIZE);
 
     // Check if the cell has a wall (represented by 1 in the map)
-    if (map[cellY] && map[cellY][cellX] === '1') {
+    if (mazes[maze_state].maze[cellY] && mazes[maze_state].maze[cellY][cellX] === '1') {
         return true; // Collision with a wall
     }
     return false; // No collision
@@ -162,12 +272,12 @@ function castRay(rayAngle) {
         const mapY = Math.floor(rayY / TILE_SIZE);
         
         // Check if ray is outside map bounds
-        if (mapX < 0 || mapX >= cols || mapY < 0 || mapY >= rows) {
+        if (mapX < 0 || mapX >= mazes[maze_state].maze[0].length || mapY < 0 || mapY >= mazes[maze_state].maze.length) {
             sky = true;
             break;
         };
         // Check if ray hits a wall
-        if (map[mapY][mapX] === '1') break;
+        if (mazes[maze_state].maze[mapY][mapX] === '1') break;
     }
     return { distance, rayX, rayY, sky };
 }
@@ -178,9 +288,9 @@ function drawScene() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     
     // Draw 2D top-down view of map and player
-    for (let row = 0; row < rows; row++) {
-        for (let col = 0; col < cols; col++) {
-            const color = map[row][col] === '1' ? '#222' : '#777';
+    for (let row = 0; row < mazes[maze_state].maze.length; row++) {
+        for (let col = 0; col < mazes[maze_state].maze[0].length; col++) {
+            const color = mazes[maze_state].maze[row][col] === '1' ? '#222' : '#777';
             // drawRect(col * TILE_SIZE, row * TILE_SIZE, TILE_SIZE, TILE_SIZE, color);
             // drawRect(col * TILE_SIZE, row * TILE_SIZE, TILE_SIZE, TILE_SIZE, "rgba(0,0,0,1)");
         }
@@ -209,7 +319,8 @@ function drawScene() {
         //     wallHeight,
         //     color
         // );
-        const MAX_DIST = TILE_SIZE * Math.max(map[0].length, map.length) / 3.6;
+        // const MAX_DIST = TILE_SIZE * Math.max(mazes[maze_state].maze[0].length, mazes[maze_state].maze.length) / 1.2;
+        const MAX_DIST = TILE_SIZE * 10;
         const alpha = Math.max(0, Math.min(.7, 1 - (correctedDist / MAX_DIST)));
         // ctx.noStroke();
         drawRect(
@@ -241,21 +352,63 @@ function movePlayer() {
         newY = player.y + sinAngle * MOVE_SPEED;
     }
 
-    // Handle backward movement (down arrow)
-    if (keys['ArrowDown'] || keys['s']) {
-        newX = player.x - cosAngle * MOVE_SPEED;
-        newY = player.y - sinAngle * MOVE_SPEED;
-    }
+    // // Handle backward movement (down arrow)
+    // if (keys['ArrowDown'] || keys['s']) {
+    //     newX = player.x - cosAngle * MOVE_SPEED;
+    //     newY = player.y - sinAngle * MOVE_SPEED;
+    // }
 
-    // Handle rotation (left and right arrows)
-    if (keys['ArrowLeft'] || keys['a']) player.angle -= ROTATE_SPEED;
-    if (keys['ArrowRight'] || keys['d']) player.angle += ROTATE_SPEED;
+    // Handle rotation (left and right armap.length)
+    let newAngle = player.angle
+    if (keys['ArrowLeft'] || keys['a']) newAngle -= ROTATE_SPEED;
+    if (keys['ArrowRight'] || keys['d']) newAngle += ROTATE_SPEED;
 
     // Check for collision at the new position and update accordingly
     if (!checkCollision(newX, newY)) {
         // If no collision, update the player position
-        player.x = newX;
-        player.y = newY;
+        // Geometry change
+        let [gridX, gridY] = raw2grid(newX, newY);
+        let trigger_x = mazes[maze_state].x;
+        let trigger_y = mazes[maze_state].y;
+        if (gridX != mazes[maze_state].x || gridY != mazes[maze_state].y){
+            player.x = newX;
+            player.y = newY;
+            player.angle = newAngle;
+            return;
+        }
+        
+        console.log("Maze state updated!");
+
+        const centerX = (gridX + 0.5) * TILE_SIZE;
+        const centerY = (gridY + 0.5) * TILE_SIZE;
+
+        const translatedX = player.x - centerX;
+        const translatedY = player.y - centerY;
+
+        let rotateBy = mazes[maze_state].tp_rotateBy;
+
+        const rotatedX = translatedX * Math.cos(rotateBy) - translatedY * Math.sin(rotateBy);
+        const rotatedY = translatedX * Math.sin(rotateBy) + translatedY * Math.cos(rotateBy);
+        
+        const final_offsetX = rotatedX + centerX;
+        const final_offsetY = rotatedY + centerY;
+
+        console.log(final_offsetX, final_offsetY);
+
+        let dx = final_offsetX % TILE_SIZE;
+        let dy = final_offsetY % TILE_SIZE;
+
+        player.x = mazes[maze_state].tp_x * TILE_SIZE + dx;
+        player.y = mazes[maze_state].tp_y * TILE_SIZE + dy;
+
+        // let offset_x = newX % TILE_SIZE;
+        // let offset_y = newY % TILE_SIZE;
+        
+        // player.x = mazes[maze_state].tp_x*TILE_SIZE + offset_x;
+        // player.y = mazes[maze_state].tp_y*TILE_SIZE + offset_y;
+        player.angle = newAngle + mazes[maze_state].tp_rotateBy;
+        
+        maze_state = mazes[maze_state].next_maze_state;
     } else {
         console.log(`Collision:\nCurrent: (${player.y}, ${player.x}) ${JSON.stringify(raw2grid(player.x, player.y).reverse())}\nNew: (${newY}, ${newX}) [${JSON.stringify(raw2grid(newX,newY).reverse())}]`)
         // If collision occurs, prevent movement in that direction
@@ -273,27 +426,13 @@ document.addEventListener('keyup', (e) => keys[e.key] = false);
 const jabberAudio = new Audio("/scream.mp3");
 jabberAudio.loop = false;
 
-let isDoorOpened = false, hasJumpscared = false;
+let hasJumpScared = false;
 function gameLoop() {
     movePlayer();
 
-    // Geometry change
-    let [gridX, gridY] = raw2grid(player.x, player.y);
-    if(!isDoorOpened){
-        if(gridX == checkpoint.x && gridY == checkpoint.y) {
-            map[door.y][door.x] = "0";
-            isDoorOpened = true;
-        }
-    } else {
-        if(gridX == uncheckpoint.x && gridY == uncheckpoint.y) {
-            map[door.y][door.x] = "1";
-            isDoorOpened = false;
-        }
-    }
-
-    if (!hasJumpscared && gridX == jumpscare.x && gridY == jumpscare.y) {
-        triggerJumpscare();
-    }
+    // if (!hasJumpScared && gridX == jumpscare.x && gridY == jumpscare.y) {
+    //     triggerJumpscare();
+    // }
 
     drawScene();
     requestAnimationFrame(gameLoop);
