@@ -31,6 +31,7 @@ function App() {
   }
 
   const leaderboard = () => {
+    // fetch leaderboard
     const p1 = "Player 1: 100";
     const p2 = "Player 2: 90";
     const p3 = "Player 3: 80";
@@ -49,6 +50,16 @@ function App() {
       modal("Leaderboard", () => setShowLeaderboard(false), body)
     );
   }
+
+  const progress = () => {
+    // fetch progress
+    const body = (
+      <p>Placeholder</p>
+    );
+    return(
+      modal("My Progress", () => setShowProgress(false), body)
+    );
+  }
   
 
   return (
@@ -57,7 +68,7 @@ function App() {
       <Navbar username={nickname} showLeaderboard={setShowLeaderboard} showProgress={setShowProgress}/> :
       <Navbar showLeaderboard={setShowLeaderboard}/>} {/*// TODO: change to logged in */}
     {showLeaderboard && leaderboard()}
-    {showProgress && progress}
+    {showProgress && progress()}
     <BrowserRouter>
     <Routes>
       <Route path={"/"} element={<Landing startGame={setGameStarted} changeNickname={setNickname}/>} />

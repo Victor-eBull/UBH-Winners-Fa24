@@ -29,6 +29,10 @@
   font-weight: 500;
   margin-bottom: .5rem;
   margin-top: -1rem;
+  background-color: rgb(254, 200, 200);
+  border-radius: 10px;
+  padding-inline: 1rem;
+  border: 1px solid red;
 }
 
 .landing_name{
