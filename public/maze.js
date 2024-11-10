@@ -121,7 +121,7 @@ let hasEnded = false;
 function gameOver(){
     if(!hasEnded){
         hasEnded = true;
-        // alert("You escaped!");
+        alert("You escaped!");
 
         // Handle the game ended logic here!
     }

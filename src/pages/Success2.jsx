@@ -23,4 +23,4 @@ function Success2() {
     )
 }
 
-export default Success
+export default Success2

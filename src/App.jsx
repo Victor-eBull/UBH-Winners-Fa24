@@ -137,7 +137,7 @@ function App() {
       <Route path={"/"} element={<Landing startGame={setGameStarted} changeNickname={setNickname} loggedIn={loggedIn}/>} />
       <Route path={"/game"} element={<Game/>} />
       <Route path="/success" element={<Success />}/>
-      <Route path="/success2" element={<Success2 />}/>
+      {/* <Route path="/success2" element={<Success2 />}/> */}
       <Route path="/room2" element={<Forest />}/>
       <Route path="/shell" element={<ShellPuzzle />}/>
     </Routes>

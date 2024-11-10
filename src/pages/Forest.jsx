@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
-import { navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Forest(){
-
+    const navigate = useNavigate();
     useEffect(() => {
         if (!document.querySelector("script[src='/maze.js']")) {
             const script = document.createElement("script");
@@ -13,7 +13,6 @@ function Forest(){
             // Clean up the script when component unmounts
             return () => {
                 document.body.removeChild(script);
-                navigate('/success2');
             };
         }   
     }, []);
