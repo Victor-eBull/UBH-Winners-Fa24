@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Landing from './pages/Landing';
 import Roadmap from './pages/Roadmap';
+import Forest  from './pages/Forest';
 import './App.css';
 
 function App() {
