@@ -24,17 +24,25 @@ services:
     volumes:
       - ./shared_data:/shared_data
 
-  room1:
+  filesystem_challenge:
     build:
-      context: .
-      dockerfile: ./room1/Dockerfile
-    container_name: HostB
+      context: . # todo: change 
+      dockerfile: ./filesystem_challenge/Dockerfile
+    container_name: file_host
     mac_address: "AA:BB:CC:DD:EE:06"
     networks:
       UBHNet:
         ipv4_address: 10.42.0.6
-    volumes:
-      - ./shared_data:/shared_data
+
+  database:
+    build:
+      context: .
+      dockerfile: ./database/Dockerfile
+    container_name: database
+    mac_address: "AA:BB:CC:DD:EE:15"
+    networks:
+      UBHNet:
+        ipv4_address: 10.42.0.15
     
 networks:
   UBHNet:
