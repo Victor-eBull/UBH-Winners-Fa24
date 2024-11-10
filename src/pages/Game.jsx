@@ -26,7 +26,7 @@ function Game() {
         }).then((data) => {
             if (data.message === "pass"){
                 console.log("Correct answer!");
-                alert("win");
+                navigate('/success');
                 // Navigate to next room
             }
             else {
@@ -49,7 +49,7 @@ function Game() {
                 <input value={input}
                     type='text'
                     onChange={(e) => setInput(e.target.value)}
-                    placeholder='Enter your anwser here'
+                    placeholder='Enter your answer here'
                 ></input>
                 <button onClick={checkAnswer}
                 >Submit</button>

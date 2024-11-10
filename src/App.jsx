@@ -4,6 +4,9 @@ import Navbar from './components/Navbar'
 import Landing from './pages/Landing';
 import Game from './pages/Game';
 import Forest  from './pages/Forest';
+import ShellPuzzle from './pages/ShellPuzzle';
+import Success from './pages/Success';
+import Success2 from './pages/Success2';
 import './App.css';
 import './styles/modal.css';
 
@@ -133,7 +136,10 @@ function App() {
     <Routes>
       <Route path={"/"} element={<Landing startGame={setGameStarted} changeNickname={setNickname} loggedIn={loggedIn}/>} />
       <Route path={"/game"} element={<Game/>} />
+      <Route path="/success" element={<Success />}/>
+      <Route path="/success2" element={<Success2 />}/>
       <Route path="/room2" element={<Forest />}/>
+      <Route path="/shell" element={<ShellPuzzle />}/>
     </Routes>
     </BrowserRouter>
     </>

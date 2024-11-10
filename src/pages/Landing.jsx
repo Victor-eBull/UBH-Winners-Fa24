@@ -8,8 +8,9 @@ function Landing({startGame, changeNickname, loggedIn=false}) {
     const [nickname, setNickname] = useState('')
 
     useEffect(() => {
+        console.log('loggedIn')
         if (loggedIn) {
-            navigate('/game')
+            navigate('/game');
         }
     }, [])
 

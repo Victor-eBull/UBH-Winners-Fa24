@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors'; // for cross-origin requests
 import axios from 'axios'; // for sending information to other db
 import mysql from 'mysql';
+// import shellRouter from './shell.js';
 import { createConnection } from 'mysql';
 
 const app = express();
@@ -9,6 +10,7 @@ const PORT = 3002;
 
 app.use(cors());
 app.use(express.json());
+// app.use('/api', shellRouter);
 
 // db server url
 const db_server = 'http://localhost:3003'; // container_name:port
@@ -225,6 +227,18 @@ app.get('/api/top-five-users', async (req, res) => {
     res.status(200).json({ status: 'success', data: topUsers });
   } catch (error) {
     res.status(500).json({ status: 'error', message: error.message });
+  }
+});
+
+app.post('/api/shell', async (req, res) => {
+  const { command } = req.body;
+
+  try {
+    // Send the command to the filesystem_challenge container's exposed API endpoint
+    const response = await axios.post('http://localhost:9000/execute', { command });
+    res.json({ output: response.data.output });
+  } catch (error) {
+    res.json({ output: `Error: ${error.message}` });
   }
 });
 

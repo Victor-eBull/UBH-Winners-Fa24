@@ -1,0 +1,38 @@
+.shell-container {
+    background-color: #000;
+    color: #0f0;
+    padding: 20px;
+    font-family: monospace;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .shell-output {
+    flex-grow: 1;
+    overflow-y: auto;
+    margin-bottom: 10px;
+  }
+  
+  .command {
+    color: #0f0;
+  }
+  
+  .output {
+    color: #fff;
+    margin-left: 15px;
+  }
+  
+  .shell-input {
+    background-color: #000;
+    color: #0f0;
+    border: none;
+    width: 100%;
+    padding: 10px;
+    font-family: monospace;
+  }
+  
+  .shell-input:focus {
+    outline: none;
+  }
+  

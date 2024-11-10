@@ -90,7 +90,7 @@ const FOV = Math.PI / 3; // Field of view, in radians
 const NUM_RAYS = 1500;
 const STEP_ANGLE = FOV / NUM_RAYS;
 const MOVE_SPEED = 25;
-const ROTATE_SPEED = 0.06;
+const ROTATE_SPEED = 0.04;
 
 const offsetFactor = 0.06;
 
@@ -121,7 +121,7 @@ let hasEnded = false;
 function gameOver(){
     if(!hasEnded){
         hasEnded = true;
-        alert("You escaped!");
+        // alert("You escaped!");
 
         // Handle the game ended logic here!
     }

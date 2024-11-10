@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { navigate } from 'react-router-dom';
 
 function Forest(){
 
@@ -12,6 +13,7 @@ function Forest(){
             // Clean up the script when component unmounts
             return () => {
                 document.body.removeChild(script);
+                navigate('/success2');
             };
         }   
     }, []);
