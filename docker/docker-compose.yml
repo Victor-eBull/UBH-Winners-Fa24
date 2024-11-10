@@ -26,13 +26,23 @@ services:
 
   filesystem_challenge:
     build:
-      context: .
+      context: . # todo: change 
       dockerfile: ./filesystem_challenge/Dockerfile
     container_name: file_host
     mac_address: "AA:BB:CC:DD:EE:06"
     networks:
       UBHNet:
         ipv4_address: 10.42.0.6
+
+  database:
+    build:
+      context: .
+      dockerfile: ./database/Dockerfile
+    container_name: database
+    mac_address: "AA:BB:CC:DD:EE:15"
+    networks:
+      UBHNet:
+        ipv4_address: 10.42.0.15
     
 networks:
   UBHNet:

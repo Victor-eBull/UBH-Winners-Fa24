@@ -3,9 +3,9 @@ FROM alpine:latest
 # Install necessary packages
 RUN apk update && \
     apk add --no-cache \
-    vim iproute2 coreutils bash apache2
+    vim iproute2 coreutils bash
 
-RUN service apache2 start
+# RUN service apache2 start
 
 # Copy the filesystem_challenge directory to /tmp
 COPY ./filesystem_challenge /tmp
