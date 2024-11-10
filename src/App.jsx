@@ -4,7 +4,7 @@ import Navbar from './components/Navbar'
 import Landing from './pages/Landing';
 import Game from './pages/Game';
 import './App.css';
-import './styles/Modal.css';
+import './styles/modal.css';
 
 const apiurl = 'http://localhost:3002/api';
 

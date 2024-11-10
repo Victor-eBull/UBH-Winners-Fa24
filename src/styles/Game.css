@@ -7,5 +7,50 @@
 }
 
 .room{
-    margin-top: 20%;
+    margin-top: 6%;
 }
+
+.room h1{
+    font-family: 'Kapakana', sans-serif;
+    font-size: 5rem;
+    color: black;
+}
+
+.submit{
+    margin-top: 1rem;
+    display: flex;
+}
+
+.submit input{
+    width: 15rem;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.submit input:hover, .submit input:focus{
+    border: 1px solid black;
+}
+
+.submit input:focus::placeholder {
+    color: transparent;
+}
+
+.submit button{
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    text-align: center;
+    text-justify: center;
+    font-size: 1rem;
+    margin-left: 1rem;
+    background-color: #B5432F;
+    cursor: pointer;
+    color: white
+}
+
+.submit button:hover{
+    background-color: #D95D39;
+  }
