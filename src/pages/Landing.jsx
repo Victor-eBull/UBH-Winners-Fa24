@@ -1,11 +1,17 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { useNavigate } from 'react-router-dom';
 
-function Landing({startGame, changeNickname}) {
+function Landing({startGame, changeNickname, loggedIn=false}) {
     const navigate = useNavigate()
     const gameName = 'The White Rabbit\'s Escape'
     const [showError, setShowError] = useState(false)
     const [nickname, setNickname] = useState('')
+
+    useEffect(() => {
+        if (loggedIn) {
+            navigate('/game')
+        }
+    }, [])
 
     const handleNicknameChange = (e) => {
         const input = e.target.value

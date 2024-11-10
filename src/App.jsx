@@ -9,12 +9,62 @@ import './styles/Modal.css';
 const apiurl = 'http://localhost:3002/api';
 
 function App() {
+  const [token, setToken] = useState('');
   const [loggedIn, setIsLoggedIn] = useState(false);
   const [nickname, setNickname] = useState('')
   const [gameStarted, setGameStarted] = useState(false);
   
   const [showLeaderboard, setShowLeaderboard] = useState(false);
   const [showProgress, setShowProgress] = useState(false);
+
+  useEffect(() => {
+    setToken(localStorage.getItem('token'));
+    if (token) {
+      const formData = new FormData();
+      formData.append('token', token);
+      fetch(`${apiurl}/log-in`, {
+        method: 'POST',
+        body: formData,
+      })
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error('Failed to log in');
+          }
+          return res.json();
+        })
+        .then((data) => {
+          console.log('Fetched data:', data);
+          navigate('/game');
+          // Do something with the fetched data //! this should be my user data
+        })
+        .catch((error) => {
+          console.error('Error fetching data:', error);
+        });
+    } else {
+      console.log('No token found, skipping fetch');
+    }
+  }, []);
+
+  useEffect(() => {
+    const formData = new FormData();
+    formData.append('username', nickname);
+    fetch(`${apiurl}/sign-up`, {
+      method: 'POST',
+      body: formData,
+    })
+    .then(res => {
+      if (!res.ok) {
+        throw new Error('Failed to sign up');
+      }
+        return res.json()
+      })
+    .then((data) => {
+      console.log("Fetched token: " + data);
+      setNickname(data.username);
+      setIsLoggedIn(true);
+    })
+    .catch(err => console.log(err));
+  }, [gameStarted]);
 
   const modal = (title, closeModal, content) => {
     return(
@@ -73,7 +123,7 @@ function App() {
     {showProgress && progress()}
     <BrowserRouter>
     <Routes>
-      <Route path={"/"} element={<Landing startGame={setGameStarted} changeNickname={setNickname}/>} />
+      <Route path={"/"} element={<Landing startGame={setGameStarted} changeNickname={setNickname} loggedIn={loggedIn}/>} />
       <Route path={"/game"} element={<Game/>} />
     </Routes>
     </BrowserRouter>
