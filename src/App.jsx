@@ -5,7 +5,7 @@ import Landing from './pages/Landing';
 import Roadmap from './pages/Roadmap';
 import './App.css';
 
-const apiurl = '';
+const apiurl = 'http://localhost:3002/api';
 
 function App() {
   const [nickname, setNickname] = useState('')
