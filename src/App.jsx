@@ -32,6 +32,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Landing startGame={setGameStarted} changeNickname={setNickname}/>} />
       <Route path="/roadmap" element={<Roadmap/>} />
+      <Route path="/room2" element={<Forest />}/>
     </Routes>
     </BrowserRouter>
     </>
