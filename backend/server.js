@@ -157,6 +157,20 @@ app.post('/api/save-notes', async(req, res) => {
   }
 });
 
+// check for secret number (42)
+app.post('/api/check-number', (req, res) => {
+  const { number } = req.body;
+
+  if (typeof number !== 'number') {
+    return res.status(400).json({ error: 'Invalid input, expected a number' });
+  }
+
+  if (number === 42) {
+    return res.status(200).json({ message: 'The number is 42' });
+  } else {
+    return res.status(200).json({ message: 'The number is not 42' });
+  }
+});
 
 // create lister on the specifie dport
 app.listen(PORT, () => {
