@@ -19,7 +19,7 @@ function Landing({startGame, changeNickname}) {
             setShowError(false)
             changeNickname(nickname)
             startGame(true)
-            navigate('/roadmap')
+            navigate('/game')
         }else{
             setShowError(true)
         }

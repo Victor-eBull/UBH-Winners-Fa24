@@ -1,17 +1,21 @@
 import React, {useState} from 'react'
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar'
+import RoomOne from '../components/RoomOne'
+import '../styles/Game.css'
 
-function Roadmap() {
+function Game() {
     const navigate = useNavigate()
 
     return (
         <>
-        <div>
-            <p> roadmap page</p>
+        <div className={"game"}>
+            <div>
+                <RoomOne/>
+            </div>
         </div>
         </>
     )
 }
 
-export default Roadmap
+export default Game
