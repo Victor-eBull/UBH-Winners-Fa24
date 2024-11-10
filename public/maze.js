@@ -98,8 +98,14 @@ function drawRect(x, y, width, height, color) {
     ctx.fillRect(x, y, width, height);
 }
 
+let hasEnded = false;
 function gameOver(){
-    alert("You escaped!");
+    if(!hasEnded){
+        hasEnded = true;
+        alert("You escaped!");
+
+        // Handle the game ended logic here!
+    }
 }
 
 function checkCollision(x, y) {
