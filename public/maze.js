@@ -134,7 +134,7 @@ function drawScene() {
         //     wallHeight,
         //     color
         // );
-        const MAX_DIST = TILE_SIZE * Math.max(map[0].length, map.length) / 5;
+        const MAX_DIST = TILE_SIZE * Math.max(map[0].length, map.length) / 4;
         const alpha = Math.max(0, Math.min(1, 1 - (correctedDist / MAX_DIST)));
         // ctx.noStroke();
         drawRect(
