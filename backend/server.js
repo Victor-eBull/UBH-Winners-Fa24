@@ -11,7 +11,7 @@ app.use(cors());
 app.use(express.json());
 
 // db server url
-const db_server = 'http://database:3003'; // container_name:port
+const db_server = 'http://localhost:3003'; // container_name:port
 //const db_server = 'http://localhost:3306'; // container_name:port
 
 // basic game state structure
@@ -31,7 +31,7 @@ function generate_token() {
 // takes token, returns token to app.jsx, sends token and username to db server
 async function sign_up(username) {
   const token = generate_token();
-  //console.log(new_token);
+  // console.log(token);
   try {
     const response =  await axios.post(`${db_server}/api/sign-up`, {username, token});
     console.log(response);
