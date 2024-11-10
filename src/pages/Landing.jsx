@@ -25,6 +25,7 @@ function Landing({startGame, changeNickname, loggedIn=false}) {
             setShowError(false)
             changeNickname(nickname)
             startGame(true)
+            localStorage.setItem('username', nickname);
             navigate('/game')
         }else{
             setShowError(true)

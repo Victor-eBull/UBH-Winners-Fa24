@@ -9,22 +9,23 @@ import './styles/modal.css';
 const apiurl = 'http://localhost:3002/api';
 
 function App() {
-  const [token, setToken] = useState('');
+  const username = localStorage.getItem('username');
   const [loggedIn, setIsLoggedIn] = useState(false);
-  const [nickname, setNickname] = useState('')
+  const [nickname, setNickname] = useState('');
   const [gameStarted, setGameStarted] = useState(false);
   
   const [showLeaderboard, setShowLeaderboard] = useState(false);
   const [showProgress, setShowProgress] = useState(false);
 
   useEffect(() => {
-    setToken(localStorage.getItem('token'));
+    const token = localStorage.getItem('token');
     if (token) {
-      const formData = new FormData();
-      formData.append('token', token);
       fetch(`${apiurl}/log-in`, {
-        method: 'POST',
-        body: formData,
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ "token" : token }),
       })
         .then((res) => {
           if (!res.ok) {
@@ -33,8 +34,9 @@ function App() {
           return res.json();
         })
         .then((data) => {
-          console.log('Fetched data:', data);
-          navigate('/game');
+          console.log('logged in user:', data.data.username);
+          localStorage.setItem('username', data.data.username);
+          setIsLoggedIn(true);
           // Do something with the fetched data //! this should be my user data
         })
         .catch((error) => {
@@ -46,11 +48,15 @@ function App() {
   }, []);
 
   useEffect(() => {
+    if (nickname) {
     const formData = new FormData();
     formData.append('username', nickname);
     fetch(`${apiurl}/sign-up`, {
       method: 'POST',
-      body: formData,
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ "username" : nickname }),
     })
     .then(res => {
       if (!res.ok) {
@@ -60,10 +66,11 @@ function App() {
       })
     .then((data) => {
       console.log("Fetched token: " + data);
-      setNickname(data.username);
+      localStorage.setItem('token', data.data.token);
       setIsLoggedIn(true);
     })
     .catch(err => console.log(err));
+  }
   }, [gameStarted]);
 
   const modal = (title, closeModal, content) => {
@@ -116,8 +123,8 @@ function App() {
 
   return (
     <>
-    {nickname ?
-      <Navbar username={nickname} showLeaderboard={setShowLeaderboard} showProgress={setShowProgress}/> :
+    {loggedIn ?
+      <Navbar username={localStorage.getItem("username")} showLeaderboard={setShowLeaderboard} showProgress={setShowProgress}/> :
       <Navbar showLeaderboard={setShowLeaderboard}/>} {/*// TODO: change to logged in */}
     {showLeaderboard && leaderboard()}
     {showProgress && progress()}
