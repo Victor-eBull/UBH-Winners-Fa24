@@ -22,7 +22,7 @@
 // ];
 const map = [
     ["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
-    ["0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
+    ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
     ["1","0","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","1","1","1","1","0","1","0","1","1","1","1","1","0","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","0","0","1"],
     ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1","0","0","1"],
     ["1","0","1","1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","0","1","0","1","0","1","1","1","0","1","1","1","1","0","1","1","1","1","1","1","1","1","1","1","1","0","1","0","0","1"],
@@ -61,17 +61,17 @@ let door = {
 function coordsOf(grid,character){
     return map.map((row,i)=>[i,row.indexOf(character)]).find(value=>value[1]!=-1);
 }
-const TILE_SIZE = 160
+const TILE_SIZE = 160;
 const canvas = document.getElementById('maze');
 canvas.width = 3000;
-canvas.height = 1800;
+canvas.height = 1600;
 
 
 const visualHeight = 400;
 canvas.style.aspectRatio = "10 / 6";
 canvas.style.height = `100%`;
 const ctx = canvas.getContext('2d');
-ctx.imageSmoothingEnabled = true;
+ctx.imageSmoothingEnabled = false;
 
 const FOV = Math.PI / 3; // Field of view, in radians
 const NUM_RAYS = 1500;
@@ -100,6 +100,7 @@ const player = {
 // Helper functions
 function drawRect(x, y, width, height, color) {
     ctx.fillStyle = color;
+    ctx.strokeWeight = 0;
     ctx.fillRect(x, y, width, height);
 }
 
@@ -187,7 +188,7 @@ function drawScene() {
 
         // Render pseudo-3D wall slice
         const correctedDist = distance * Math.cos(rayAngle - player.angle);
-        const wallHeight = (TILE_SIZE * canvas.width/4) / correctedDist;
+        const wallHeight = (TILE_SIZE * canvas.width/3.5) / correctedDist;
         // drawRect(
         //     (i * (canvas.width / NUM_RAYS)),
         //     (canvas.height / 2) - (wallHeight / 2),
@@ -195,7 +196,7 @@ function drawScene() {
         //     wallHeight,
         //     color
         // );
-        const MAX_DIST = TILE_SIZE * Math.max(map[0].length, map.length) / 4;
+        const MAX_DIST = TILE_SIZE * Math.max(map[0].length, map.length) / 3;
         const alpha = Math.max(0, Math.min(1, 1 - (correctedDist / MAX_DIST)));
         // ctx.noStroke();
         drawRect(
