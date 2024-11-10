@@ -121,7 +121,7 @@ let hasEnded = false;
 function gameOver(){
     if(!hasEnded){
         hasEnded = true;
-        alert("You escaped!");
+        alert("Congratulations! You have escaped Wonderland..");
 
         // Handle the game ended logic here!
     }

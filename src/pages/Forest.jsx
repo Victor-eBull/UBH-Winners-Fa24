@@ -1,8 +1,7 @@
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 function Forest(){
-    const navigate = useNavigate();
+
     useEffect(() => {
         if (!document.querySelector("script[src='/maze.js']")) {
             const script = document.createElement("script");

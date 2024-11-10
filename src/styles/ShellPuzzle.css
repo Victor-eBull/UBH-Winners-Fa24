@@ -9,6 +9,7 @@
   }
   
   .shell-output {
+    margin-top: 10%;
     flex-grow: 1;
     overflow-y: auto;
     margin-bottom: 10px;
