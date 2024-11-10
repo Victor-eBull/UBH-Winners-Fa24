@@ -174,6 +174,7 @@ app.post('/api/save-notes', async (req, res) => {
   }
 });
 
+// puzzle funcs --------------------------------------------------------------
 // check for secret number (42)
 app.post('/api/check-number', (req, res) => {
   const { number } = req.body;
@@ -186,6 +187,48 @@ app.post('/api/check-number', (req, res) => {
     return res.status(200).json({ message: 'The number is 42' });
   } else {
     return res.status(200).json({ message: 'The number is not 42' });
+  }
+});
+
+// dashboard funcs ------------------------------------------------------------
+
+async function prune_old_sessions() {
+  const daysThreshold = 1; // number of days
+  try {
+    const response = await axios.post(`${db_server}/api/prune-old-sessions`, { daysThreshold });
+    console.log('Old sessions pruned:', response.data);
+  } catch (error) {
+    console.log('Error pruning old sessions:', error);
+    throw new Error('Prune old sessions failed');
+  }
+}
+
+app.post('/api/prune-old-sessions', async (req, res) => {
+  try {
+    await prune_old_sessions();
+    res.status(200).json({ status: 'success', message: 'Old sessions pruned successfully' });
+  } catch (error) {
+    res.status(500).json({ status: 'error', message: error.message });
+  }
+});
+
+async function get_top_five_users() {
+  try {
+    const response = await axios.get(`${db_server}/api/top-five-users`);
+    console.log('Top 5 users:', response.data);
+    return response.data;
+  } catch (error) {
+    console.log('Error fetching top 5 users:', error);
+    throw new Error('Failed to get top 5 users');
+  }
+}
+
+app.get('/api/top-five-users', async (req, res) => {
+  try {
+    const topUsers = await get_top_five_users();
+    res.status(200).json({ status: 'success', data: topUsers });
+  } catch (error) {
+    res.status(500).json({ status: 'error', message: error.message });
   }
 });
 

@@ -116,6 +116,48 @@ app.post('/api/save-notes', async (req, res) => {
     }
 });
 
+// dashboard logic ----------------------------------------------------
+app.post('/api/prune-old-sessions', async (req, res) => {
+    const { daysThreshold } = req.body;
+
+    const query = `
+        DELETE FROM user_sessions
+        WHERE latest_timestamp < DATE_SUB(NOW(), INTERVAL ? DAY)
+    `;
+
+    try {
+        await handleQuery(query, [daysThreshold]);
+        res.status(200).json({ message: `Pruned sessions older than ${daysThreshold} days` });
+    } catch (error) {
+        console.log('Error pruning sessions:', error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.get('/api/top-five-users', async (req, res) => {
+    const query = `
+        SELECT username, room1, room2, TIMESTAMPDIFF(SECOND, start_timestamp, latest_timestamp) AS time_diff
+        FROM user_sessions
+        WHERE room1 = TRUE OR room2 = TRUE
+        ORDER BY 
+            CASE
+                WHEN room2 = TRUE THEN 2
+                WHEN room1 = TRUE THEN 1
+                ELSE 0
+            END DESC, 
+            time_diff ASC
+        LIMIT 5
+    `;
+
+    try {
+        const results = await handleQuery(query);
+        res.status(200).json(results); // Returning the top 5 users
+    } catch (error) {
+        console.log('Error fetching top 5 users:', error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
 app.listen(PORT, () => {
     console.log(`DB Server running on port ${PORT}`);
 });
