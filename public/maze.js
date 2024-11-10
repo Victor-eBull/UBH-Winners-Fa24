@@ -48,6 +48,11 @@ let checkpoint = {
     y: 18
 }
 
+let uncheckpoint = {
+    x: 22,
+    y: 6
+}
+
 let door = {
     x: 21,
     y: 7
@@ -74,7 +79,7 @@ const STEP_ANGLE = FOV / NUM_RAYS;
 const MOVE_SPEED = 25;
 const ROTATE_SPEED = 0.06;
 
-const offsetFactor = 0.2;
+const offsetFactor = 0.13;
 
 function raw2grid(x,y){
     output = [Math.floor(x / TILE_SIZE), Math.floor(y / TILE_SIZE)]
@@ -133,7 +138,7 @@ function castRay(rayAngle) {
     const cosAngle = Math.cos(rayAngle);
     const sinAngle = Math.sin(rayAngle);
     let distance = 0;
-    let draw = true;
+    let sky = false;
     while (true) {
         rayX += cosAngle;
         rayY += sinAngle;
@@ -144,13 +149,13 @@ function castRay(rayAngle) {
         
         // Check if ray is outside map bounds
         if (mapX < 0 || mapX >= cols || mapY < 0 || mapY >= rows) {
-            draw = false;
+            sky = true;
             break;
         };
         // Check if ray hits a wall
         if (map[mapY][mapX] === '1') break;
     }
-    return { distance, rayX, rayY, draw };
+    return { distance, rayX, rayY, sky };
 }
 
 function drawScene() {
@@ -170,10 +175,7 @@ function drawScene() {
     // Draw rays
     for (let i = 0; i < NUM_RAYS; i++) {
         const rayAngle = player.angle - (FOV / 2) + (i * STEP_ANGLE);
-        const { distance, rayX, rayY, draw } = castRay(rayAngle);
-        if(!draw){
-            continue;
-        }
+        const { distance, rayX, rayY, sky } = castRay(rayAngle);
         
         // Draw ray in 2D view
         // ctx.strokeStyle = 'rgba(255, 255, 0, 0.3)';
@@ -201,7 +203,7 @@ function drawScene() {
             (canvas.height / 2) - (wallHeight / 2) - offsetY,
             sliceWidth,
             wallHeight,
-            `rgba(255, 255, 255, ${alpha})`
+            sky ? `rgba(0, 255, 255, ${alpha})` : `rgba(255, 255, 255, ${alpha})`
         );
     }
     
@@ -259,11 +261,16 @@ function gameLoop() {
     movePlayer();
 
     // Geometry change
+    let [gridX, gridY] = raw2grid(player.x, player.y);
     if(!isDoorOpened){
-        let [gridX, gridY] = raw2grid(player.x, player.y);
         if(gridX == checkpoint.x && gridY == checkpoint.y) {
             map[door.y][door.x] = "0";
             isDoorOpened = true;
+        }
+    } else {
+        if(gridX == uncheckpoint.x && gridY == uncheckpoint.y) {
+            map[door.y][door.x] = "1";
+            isDoorOpened = false;
         }
     }
 
