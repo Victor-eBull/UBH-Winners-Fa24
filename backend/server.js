@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json());
 
 // db server url
-const db_serevr = '';
+const db_server = '';
 
 // basic game state structure
 const gamestate = {
@@ -36,7 +36,7 @@ async function sign_up(username) {
     return new_token;
 
   } catch (error) {
-    console.log('error signing user up: ', user);
+    console.log('error signing user up: ', username);
     throw new Error('sign-up failed');
 
   }
@@ -68,6 +68,8 @@ async function log_in(token) {
       state.room_number = 1;
     } else if (room2) {
       state.room = 2;
+    } else {
+      state.room_number = 1;
     }
 
     return state;
@@ -114,18 +116,18 @@ app.post('/api/sign-up', async(req, res) => {
   const {username} = req.body;
   try {
     const result = await sign_up(username);
-    res.json(result);
+    res.status(200).json(result);
   } catch (error) {
     res.status(500).json({error: error.message});
   }
 });
 
 // user log in
-app.post('/api/log-up', async(req, res) => {
+app.post('/api/log-in', async(req, res) => {
   const {token} = req.body;
   try {
     const state = await log_in(token);
-    res.json(state);
+    res.status(200).json(state);
   } catch (error) {
     res.status(500).json({error: error.message});
   }
@@ -136,7 +138,7 @@ app.post('/api/update-room', async(req, res) => {
   const {token, room_number} = req.body;
   try {
     const result = await update_room(token, room_number);
-    res.json(result);
+    res.status(200).json(result);
   } catch (error) {
     res.status(500).json({error: error.message});
   }
@@ -147,7 +149,7 @@ app.post('/api/save-notes', async(req, res) => {
   const {token, notes} = req.body;
   try {
     const result = await save_notes(token, notes);
-    res.json(result);
+    res.status(200).json(result);
   } catch (error) {
     res.status(500).json({error: error.message});
   }
